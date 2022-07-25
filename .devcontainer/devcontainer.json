@@ -1,0 +1,8 @@
+{
+  "name": "next",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "next",
+  "workspaceFolder": "/workspace",
+  "extensions": ["dsznajder.es7-react-js-snippets","foxundermoon.next-js","pulkitgangwar.nextjs-snippets"],
+  "forwardPorts": [3000]
+}

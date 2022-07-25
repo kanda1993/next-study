@@ -1,0 +1,14 @@
+version: '3'
+services:
+  next:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    image: next-study
+    tty: true
+    volumes:
+      - ../:/workspace
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - "3000:3000"
