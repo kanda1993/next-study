@@ -3,18 +3,21 @@ import Link from 'next/link'
 
 import React, { useState } from 'react'
 
-type Counter = {
-    count : number
-};
+import Greeting from './Greeting';
+import MoveComponent from './MoveComponent';
+
+interface HumanObject {
+    firstName: string;
+    lastName: string;
+    age: number;
+}
+
 
 const Main : NextPage = () => {
 
-
-
     let isDisplay : boolean = false;
 
-    function alertDispButtonClick(e){
-        e.preventDefault();
+    function alertDispButtonClick(){
         alert("alertDispButtonClick");
     }
 
@@ -31,6 +34,21 @@ const Main : NextPage = () => {
         alert(count);
     }
 
+
+    const [humanObject, setHumanObject] = useState<HumanObject>({
+        firstName: "初期苗字山田",
+        lastName: "初期名太郎",
+        age: 3,
+    });
+
+
+    //固定で変える
+    function changeHuman (){
+        setHumanObject({ ...humanObject, firstName: "変更後苗字鈴木", lastName: "変更後苗字たろう", age: 10  });
+        console.log(humanObject.firstName + "," + humanObject.lastName + "," + humanObject.age);
+
+    }
+
     return (
         <div>
             <h1 className="title">
@@ -42,25 +60,47 @@ const Main : NextPage = () => {
             </Link>
 
             <div>
-                <button onClick={alertDispButtonClick}>alertDispButtonClick</button>
+                <button onClick={alertDispButtonClick}>alertDispButtonClick(onClickで関数呼ぶテスト)</button>
             </div>
 
 
             <div>
-                {/* 渡すプロパティ値を更新しても実行後は意味がないことを確認 */}
-                <button onClick={changeIsDisplay}>changeIsDisplay</button>
+                <h2>渡すプロパティ値を更新してもuseStateを使わなければ描画後は意味がないことを確認</h2>
+                <button onClick={changeIsDisplay}>changeIsDisplay_useState未使用</button>
                 <Sub 
                     isDisplay = {isDisplay}
                 />
             </div>
 
             <div>
+                <h2>useSateはHockで、Hockしなくても内部数値は変わることを確認</h2>
                 <p>count: {count}</p>
-                <button onClick={countUp}>countup</button>
-                <button onClick={() => setCount(count + 1)}>Count+</button>
+                <button onClick={countUp}>countup_useState未使用</button>
+                <button onClick={() => setCount(count + 1)}>Count_useState使用</button>
             </div>
 
+            <div>
+                <h2>配列でVOクラス的に扱えるかを確認</h2>
+                <div>
+                    firstName : <input type="text" ></input>
+                </div>
+                
+                <p> {humanObject.firstName}</p>
+                <p> {humanObject.lastName}</p>
+                <p> {humanObject.age}</p>
+                
+                <button onClick={changeHuman}>changeHuman</button>
+            </div>
 
+            <div>
+                <h2>自作外部コンポーネント</h2>
+                <Greeting></Greeting>
+            </div>
+
+            <div>
+                <h2>スクリプトからのページ遷移</h2>
+                <MoveComponent></MoveComponent>
+            </div>
 
         </div>
     )
@@ -68,7 +108,7 @@ const Main : NextPage = () => {
 
 export default Main
 
-function Sub(props) {
+function Sub(props : any) {
     let isDisplay = props.isDisplay;
 
     if(isDisplay){
