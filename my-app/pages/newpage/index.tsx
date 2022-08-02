@@ -49,6 +49,10 @@ const Main : NextPage = () => {
 
     }
 
+    //環境変数読めるか
+    console.log(process.env.NEXT_PUBLIC_ENV_HOGE, process.env.ENV_FOO);
+    console.log(process.env.COGNITO_ISSUER);
+
     return (
         <div>
             <h1 className="title">
@@ -100,6 +104,12 @@ const Main : NextPage = () => {
             <div>
                 <h2>スクリプトからのページ遷移</h2>
                 <MoveComponent></MoveComponent>
+            </div>
+
+            <div>
+                <h2>環境変数「NEXT_PUBLIC_ENV_HOGE」「ENV_FOO」が取得できているか ※「NEXT_PUBLIC_」とついている環境変数のみクライアント側でも読めるはず</h2>
+                <p>{ process.env.NEXT_PUBLIC_ENV_HOGE }</p>
+                <p>{ process.env.ENV_FOO }</p>
             </div>
 
         </div>

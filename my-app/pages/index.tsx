@@ -4,10 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link';
 import styles from '../styles/Home.module.css'
 
-function hoge() {
-  alert("foo");
-}
-
 const Home: NextPage = () => {
   return (
     <div className={styles.container}>
@@ -19,27 +15,21 @@ const Home: NextPage = () => {
 
       <main className={styles.main}>
         <h1 className={styles.title}>
-          sign in
+           React.js(Next.js)勉強
         </h1>
 
         <p className={styles.description}>
           ハリポテ
         </p>
 
-        <div>
-          <div>
-            userID: <input></input>
-          </div>
-          <div>
-            パスワード: <input></input>
-          </div>
-          <div>
-            <button>sign in</button>
-          </div>
-        </div>
+
 
         <Link href="/newpage">
           <a>move new page</a>
+        </Link>
+
+        <Link href={"/sign"}>
+          sign
         </Link>
       </main>
 
