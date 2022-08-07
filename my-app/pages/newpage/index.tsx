@@ -6,6 +6,8 @@ import React, { useState } from 'react'
 import Greeting from './Greeting';
 import MoveComponent from './MoveComponent';
 
+import CallAPIButton from '../call/hello-apigateway';
+
 interface HumanObject {
     firstName: string;
     lastName: string;
@@ -110,6 +112,11 @@ const Main : NextPage = () => {
                 <h2>環境変数「NEXT_PUBLIC_ENV_HOGE」「ENV_FOO」が取得できているか ※「NEXT_PUBLIC_」とついている環境変数のみクライアント側でも読めるはず</h2>
                 <p>{ process.env.NEXT_PUBLIC_ENV_HOGE }</p>
                 <p>{ process.env.ENV_FOO }</p>
+            </div>
+
+            <div>
+                <h2>API Gateway Call</h2>
+                <CallAPIButton></CallAPIButton>
             </div>
 
         </div>
